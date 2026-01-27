@@ -1,4 +1,3 @@
-// src/main/java/com/company/bookmanagement/config/SwaggerConfig.java
 package com.company.bookmanagement.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -12,36 +11,18 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-/**
- * Swagger/OpenAPI Configuration
- *
- * This configuration class sets up the OpenAPI documentation for our REST API.
- * It provides detailed API documentation accessible at /swagger-ui.html
- *
- * WORKFLOW:
- * 1. Spring Boot starts and scans for @Configuration classes
- * 2. This class creates an OpenAPI bean with API metadata
- * 3. SpringDoc automatically generates API documentation
- * 4. Documentation is accessible at http://localhost:8080/swagger-ui.html
- */
 @Configuration
 public class SwaggerConfig {
 
     @Value("${spring.application.name:Book Management API}")
     private String applicationName;
 
-    @Value("${server.port:8080}")
+    @Value("${server.port:9000}")
     private String serverPort;
 
-    /**
-     * Creates and configures the OpenAPI documentation bean
-     *
-     * @return OpenAPI object with complete API documentation setup
-     */
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                // Server configuration - where the API is hosted
                 .servers(List.of(
                         new Server()
                                 .url("http://localhost:" + serverPort)
@@ -50,7 +31,6 @@ public class SwaggerConfig {
                                 .url("https://api.company.com")
                                 .description("Production Server")
                 ))
-                // API Information
                 .info(new Info()
                         .title(applicationName)
                         .version("1.0.0")
