@@ -1,16 +1,7 @@
-# src/main/resources/application-dev.yml
-# ============================================
-# Development Environment Configuration
-# ============================================
-# Activated with: -Dspring.profiles.active=dev
-# ============================================
-
 spring:
   jackson:
     serialization:
-      indent-output: true  # Pretty print for readability
-
-# More verbose logging in development
+      indent-output: true
 logging:
   level:
     root: INFO
@@ -18,12 +9,10 @@ logging:
     org.springframework.web: DEBUG
     org.springframework.validation: DEBUG
 
-# Development server settings
 server:
   error:
-    include-stacktrace: on_param  # Include stack trace if ?trace=true
+    include-stacktrace: on_param
 
-# Enable all actuator endpoints in development
 management:
   endpoints:
     web:

@@ -1,4 +1,3 @@
-// src/main/java/com/company/bookmanagement/model/dto/response/BookResponse.java
 package com.company.bookmanagement.model.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -9,18 +8,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-/**
- * Book Response DTO
- *
- * Data Transfer Object returned to clients when requesting book data.
- * This separates the internal entity structure from the API response.
- *
- * BENEFITS OF USING DTOs:
- * 1. Hides internal entity structure
- * 2. Can add computed fields
- * 3. Controls what data is exposed
- * 4. Allows entity changes without API changes
- */
 @Data
 @Builder
 @NoArgsConstructor

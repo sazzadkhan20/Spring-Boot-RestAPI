@@ -1,4 +1,3 @@
-// src/test/java/com/company/bookmanagement/integration/BookApiIntegrationTest.java
 package com.company.bookmanagement.integration;
 
 import com.company.bookmanagement.model.dto.request.CreateBookRequest;
@@ -19,12 +18,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/**
- * Integration Tests for Book API
- *
- * Tests the complete flow from controller to repository.
- * Uses actual Spring context with in-memory storage.
- */
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
