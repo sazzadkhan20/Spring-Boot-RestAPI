@@ -1,4 +1,10 @@
 package com.learn.Task2.repository.impl;
 
-public class InMemoryOrderRepository {
+import com.learn.Task2.repository.OrderRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
+
+@Repository
+@Slf4j
+public class InMemoryOrderRepository implements OrderRepository {
 }
