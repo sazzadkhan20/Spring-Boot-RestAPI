@@ -1,4 +1,3 @@
-// src/test/java/com/company/bookmanagement/service/BookServiceTest.java
 package com.company.bookmanagement.service;
 
 import com.company.bookmanagement.exception.BookNotFoundException;
@@ -30,12 +29,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
-/**
- * Book Service Unit Tests
- *
- * Tests the service layer business logic in isolation.
- * Repository and Mapper are mocked.
- */
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Book Service Tests")
 class BookServiceTest {

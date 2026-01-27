@@ -1,40 +1,25 @@
-# src/main/resources/application.yml
-# ============================================
-# Main Application Configuration
-# ============================================
-# This file contains the default configuration
-# that applies to all environments.
-# ============================================
-
 spring:
   application:
     name: Book Management API
-
-  # Profile configuration
   profiles:
-    active: dev  # Default profile (override with -Dspring.profiles.active=prod)
-
-  # Jackson JSON configuration
+    active: dev
   jackson:
     serialization:
-      write-dates-as-timestamps: false  # Use ISO-8601 format for dates
-      indent-output: true  # Pretty print JSON (disable in production)
+      write-dates-as-timestamps: false
+      indent-output: true
     deserialization:
-      fail-on-unknown-properties: false  # Ignore unknown JSON properties
-    default-property-inclusion: non_null  # Don't include null fields
+      fail-on-unknown-properties: false
+    default-property-inclusion: non_null
 
-# Server configuration
 server:
   port: 9000
   servlet:
-    context-path: /  # Base path for all endpoints
+    context-path: /
   error:
     include-message: always
     include-binding-errors: always
-    include-stacktrace: never  # Never expose stack traces to clients
+    include-stacktrace: never
     include-exception: false
-
-# Logging configuration
 logging:
   level:
     root: INFO
@@ -44,7 +29,6 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
-# Actuator endpoints
 management:
   endpoints:
     web:
@@ -58,7 +42,6 @@ management:
     env:
       enabled: true
 
-# Application info
 info:
   app:
     name: ${spring.application.name}
@@ -66,7 +49,6 @@ info:
     version: 1.0.0
     java-version: ${java.version}
 
-# SpringDoc OpenAPI configuration
 springdoc:
   api-docs:
     path: /api-docs

@@ -1,4 +1,3 @@
-// src/test/java/com/company/bookmanagement/controller/BookControllerTest.java
 package com.company.bookmanagement.controller;
 
 import com.company.bookmanagement.model.dto.request.CreateBookRequest;
@@ -30,17 +29,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/**
- * Book Controller Unit Tests
- *
- * Tests the controller layer in isolation using MockMvc.
- * Service layer is mocked to focus on HTTP request/response handling.
- *
- * TEST STRUCTURE:
- * - Nested classes group related tests
- * - Each endpoint has its own nested class
- * - Tests cover success and error scenarios
- */
 @WebMvcTest(BookController.class)
 @DisplayName("Book Controller Tests")
 class BookControllerTest {
@@ -77,8 +65,6 @@ class BookControllerTest {
                 .genre("Fiction")
                 .build();
     }
-
-    // ==================== POST /api/books Tests ====================
 
     @Nested
     @DisplayName("POST /api/books")
@@ -271,8 +257,6 @@ class BookControllerTest {
         }
     }
 
-    // ==================== GET /api/books Tests ====================
-
     @Nested
     @DisplayName("GET /api/books")
     class GetAllBooksTests {
@@ -325,8 +309,6 @@ class BookControllerTest {
                     .andExpect(jsonPath("$", hasSize(0)));
         }
     }
-
-    // ==================== GET /api/books/{id} Tests ====================
 
     @Nested
     @DisplayName("GET /api/books/{id}")
@@ -381,8 +363,6 @@ class BookControllerTest {
                     .andExpect(jsonPath("$.errorCode", is("VAL-007")));
         }
     }
-
-    // ==================== PUT /api/books/{id} Tests ====================
 
     @Nested
     @DisplayName("PUT /api/books/{id}")
@@ -461,8 +441,6 @@ class BookControllerTest {
                     .andExpect(status().isBadRequest());
         }
     }
-
-    // ==================== DELETE /api/books/{id} Tests ====================
 
     @Nested
     @DisplayName("DELETE /api/books/{id}")

@@ -1,4 +1,3 @@
-// src/main/java/com/company/bookmanagement/controller/BookController.java (CONTINUED)
 package com.company.bookmanagement.controller;
 
 import com.company.bookmanagement.model.dto.request.CreateBookRequest;
@@ -24,31 +23,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Book REST Controller
- *
- * Handles HTTP requests for book operations.
- * All endpoints are under /api/books base path.
- *
- * ENDPOINTS:
- * POST   /api/books       - Create a new book
- * GET    /api/books       - Get all books
- * GET    /api/books/{id}  - Get book by ID
- * PUT    /api/books/{id}  - Update book
- * DELETE /api/books/{id}  - Delete book
- *
- * RESPONSIBILITIES:
- * 1. Receive HTTP requests
- * 2. Validate input (@Valid)
- * 3. Delegate to service layer
- * 4. Return appropriate HTTP responses
- *
- * DESIGN PRINCIPLES:
- * - Thin controller: Only handles HTTP concerns
- * - Business logic is in service layer
- * - Validation uses Bean Validation
- * - Exception handling is in GlobalExceptionHandler
- */
 @RestController
 @RequestMapping("/api/books")
 @RequiredArgsConstructor
@@ -58,23 +32,6 @@ public class BookController {
 
     private final BookService bookService;
 
-    /**
-     * Create a new book
-     *
-     * HTTP: POST /api/books
-     * Request Body: CreateBookRequest (JSON)
-     * Response: 201 Created with BookResponse
-     *
-     * WORKFLOW:
-     * 1. Receive POST request with JSON body
-     * 2. @Valid triggers validation on CreateBookRequest
-     * 3. If validation fails -> GlobalExceptionHandler returns 400
-     * 4. If validation passes -> call bookService.createBook()
-     * 5. Return 201 Created with created book
-     *
-     * @param request The book creation request
-     * @return ResponseEntity with created book and 201 status
-     */
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -130,14 +87,6 @@ public class BookController {
                 .body(createdBook);
     }
 
-    /**
-     * Get all books
-     *
-     * HTTP: GET /api/books
-     * Response: 200 OK with list of books (may be empty)
-     *
-     * @return ResponseEntity with list of all books
-     */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Get all books",
@@ -162,17 +111,6 @@ public class BookController {
 
         return ResponseEntity.ok(books);
     }
-
-    /**
-     * Get a book by ID
-     *
-     * HTTP: GET /api/books/{id}
-     * Path Variable: id (Long)
-     * Response: 200 OK with book, or 404 Not Found
-     *
-     * @param id The book ID to retrieve
-     * @return ResponseEntity with book data
-     */
     @GetMapping(
             value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -232,22 +170,6 @@ public class BookController {
         return ResponseEntity.ok(book);
     }
 
-    /**
-     * Update an existing book
-     *
-     * HTTP: PUT /api/books/{id}
-     * Path Variable: id (Long)
-     * Request Body: UpdateBookRequest (JSON)
-     * Response: 200 OK with updated book, or 404 Not Found
-     *
-     * PARTIAL UPDATE:
-     * - Only non-null fields in request will be updated
-     * - Null fields will retain their existing values
-     *
-     * @param id      The book ID to update
-     * @param request The update request with new values
-     * @return ResponseEntity with updated book
-     */
     @PutMapping(
             value = "/{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -297,20 +219,6 @@ public class BookController {
         return ResponseEntity.ok(updatedBook);
     }
 
-    /**
-     * Delete a book
-     *
-     * HTTP: DELETE /api/books/{id}
-     * Path Variable: id (Long)
-     * Response: 200 OK with deleted book, or 404 Not Found
-     *
-     * IDEMPOTENCY:
-     * - First DELETE returns 200 with deleted book
-     * - Subsequent DELETEs for same ID return 404
-     *
-     * @param id The book ID to delete
-     * @return ResponseEntity with deleted book
-     */
     @DeleteMapping(
             value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE
