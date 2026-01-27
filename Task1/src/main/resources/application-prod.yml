@@ -1,0 +1,46 @@
+# src/main/resources/application-prod.yml
+# ============================================
+# Production Environment Configuration
+# ============================================
+# Activated with: -Dspring.profiles.active=prod
+# ============================================
+
+spring:
+  jackson:
+    serialization:
+      indent-output: false  # Compact JSON for production
+
+# Minimal logging in production
+logging:
+  level:
+    root: WARN
+    com.company.bookmanagement: INFO
+    org.springframework.web: WARN
+  file:
+    name: /var/log/bookmanagement/application.log
+    max-size: 100MB
+    max-history: 30
+
+# Production server settings
+server:
+  error:
+    include-stacktrace: never
+    include-message: always
+    include-exception: false
+
+# Limit actuator endpoints in production
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when_authorized
+
+# Disable Swagger in production
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
