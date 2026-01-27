@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 
 @Data
 @NoArgsConstructor
@@ -20,7 +22,7 @@ public class CreateOrderRequest {
 
     @NotNull(message = "Total Amount must be greater than 0")
     @Positive
-    private Number totalAmount;
+    private BigDecimal totalAmount;
 
 
 }

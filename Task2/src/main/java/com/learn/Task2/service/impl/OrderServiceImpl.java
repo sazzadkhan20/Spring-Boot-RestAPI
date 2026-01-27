@@ -1,17 +1,20 @@
 package com.learn.Task2.service.impl;
 
+import com.learn.Task2.exception.InvalidOrderStateException;
+import com.learn.Task2.exception.OrderNotFoundException;
 import com.learn.Task2.mapper.OrderMapper;
 import com.learn.Task2.model.dto.request.CreateOrderRequest;
 import com.learn.Task2.model.dto.response.OrderResponse;
 import com.learn.Task2.model.entity.Order;
 import com.learn.Task2.model.entity.OrderState;
 import com.learn.Task2.repository.OrderRepository;
+import com.learn.Task2.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class OrderServiceImpl {
+public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository repository;
     private final OrderMapper mapper;
@@ -42,7 +45,7 @@ public class OrderServiceImpl {
     @Override
     public OrderResponse approve(Long id){
         Order order = getOrderInternal(id);
-        requireState(order, OrderState.APPROVED);
+        requireState(order, OrderState.CREATED);
         order.setState(OrderState.valueOf(OrderState.APPROVED.toString()));
 
         return mapper.toDto(repository.save(order));
@@ -51,7 +54,7 @@ public class OrderServiceImpl {
     @Override
     public OrderResponse pay(Long id){
         Order order = getOrderInternal(id);
-        requireState(order, OrderState.PAID);
+        requireState(order, OrderState.APPROVED);
         order.setState(OrderState.valueOf(OrderState.PAID.toString()));
 
         return mapper.toDto(repository.save(order));
@@ -61,7 +64,7 @@ public class OrderServiceImpl {
     @Override
     public OrderResponse ship(Long id){
         Order order = getOrderInternal(id);
-        requireState(order, OrderState.SHIPPED);
+        requireState(order, OrderState.PAID);
         order.setState(OrderState.valueOf(OrderState.SHIPPED.toString()));
 
         return mapper.toDto(repository.save(order));
@@ -71,7 +74,7 @@ public class OrderServiceImpl {
     @Override
     public OrderResponse close(Long id){
         Order order = getOrderInternal(id);
-        requireState(order, OrderState.CLOSED);
+        requireState(order, OrderState.SHIPPED);
         order.setState(OrderState.valueOf(OrderState.CLOSED.toString()));
 
         return mapper.toDto(repository.save(order));
