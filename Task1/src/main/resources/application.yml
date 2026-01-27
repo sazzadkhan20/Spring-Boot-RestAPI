@@ -1,0 +1,80 @@
+# src/main/resources/application.yml
+# ============================================
+# Main Application Configuration
+# ============================================
+# This file contains the default configuration
+# that applies to all environments.
+# ============================================
+
+spring:
+  application:
+    name: Book Management API
+
+  # Profile configuration
+  profiles:
+    active: dev  # Default profile (override with -Dspring.profiles.active=prod)
+
+  # Jackson JSON configuration
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false  # Use ISO-8601 format for dates
+      indent-output: true  # Pretty print JSON (disable in production)
+    deserialization:
+      fail-on-unknown-properties: false  # Ignore unknown JSON properties
+    default-property-inclusion: non_null  # Don't include null fields
+
+# Server configuration
+server:
+  port: 9000
+  servlet:
+    context-path: /  # Base path for all endpoints
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: never  # Never expose stack traces to clients
+    include-exception: false
+
+# Logging configuration
+logging:
+  level:
+    root: INFO
+    com.company.bookmanagement: DEBUG
+    org.springframework.web: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when_authorized
+  info:
+    env:
+      enabled: true
+
+# Application info
+info:
+  app:
+    name: ${spring.application.name}
+    description: RESTful API for Book Management
+    version: 1.0.0
+    java-version: ${java.version}
+
+# SpringDoc OpenAPI configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operations-sorter: method
+    tags-sorter: alpha
+    display-request-duration: true
+  show-actuator: true
