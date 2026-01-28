@@ -1,5 +1,6 @@
 package com.learn.Task2.model.dto.response;
 
+import com.learn.Task2.model.entity.OrderState;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,5 @@ public class OrderResponse {
     private BigDecimal totalAmount;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private OrderState state;
 }
