@@ -40,7 +40,6 @@ public class OrderController {
 
     @PostMapping(
             value = "/{id}/approve",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public OrderResponse approve(@PathVariable Long id) {
         return service.approve(id);
@@ -48,7 +47,6 @@ public class OrderController {
 
     @PostMapping(
             value= "/{id}/pay",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public OrderResponse pay(@PathVariable Long id) {
         return service.pay(id);
@@ -56,7 +54,6 @@ public class OrderController {
 
     @PostMapping(
             value= "/{id}/ship",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public OrderResponse ship(@PathVariable Long id) {
         return service.ship(id);
@@ -64,7 +61,6 @@ public class OrderController {
 
     @PostMapping(
             value= "/{id}/close",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public OrderResponse close(@PathVariable Long id) {
         return service.close(id);
