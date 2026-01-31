@@ -1,5 +1,6 @@
 package com.payment.Task3.repository;
 
+import com.payment.Task3.model.entity.Payment;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -11,11 +12,12 @@ import java.util.concurrent.atomic.AtomicLong;
 @Repository
 public class PaymentRepository {
 
-    private final Map<Long,Payment> store = new ConcurrentHashMap<>();
+    private final Map<Long, Payment> store = new ConcurrentHashMap<>();
     private final Map<String, Long> idempotencyIndex = new ConcurrentHashMap<>();
     private final Map<String, Long> externalRefIndex = new ConcurrentHashMap<>();
 
     private final AtomicLong idGenerator = new AtomicLong(0);
+
 
     public Payment save(Payment payment){
 
@@ -45,7 +47,5 @@ public class PaymentRepository {
         return Optional.ofNullable(externalRefIndex.get(ref))
                 .map(store::get);
     }
-
-
 
 }
